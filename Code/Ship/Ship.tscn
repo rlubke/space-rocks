@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dhmmlqnos0d8n"]
+
+[ext_resource type="Script" uid="uid://dansvaa3darfj" path="res://Ship/Ship.gd" id="1_11244"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hteq"]
+size = Vector2(20, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2inf"]
+size = Vector2(53, 20)
+
+[node name="Ship" type="Area2D" unique_id=1992832231]
+script = ExtResource("1_11244")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2104873964]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_0hteq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=478579350]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_t2inf")

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://daxej6ao7w820"]
+
+[ext_resource type="Script" uid="uid://c41pn81buxhpv" path="res://UI/UI.gd" id="1_6dd3c"]
+[ext_resource type="Texture2D" uid="uid://cmp8dhqeo5lyx" path="res://Main/icon.png" id="2_dhe1o"]
+
+[node name="UI" type="PanelContainer" unique_id=1622990458]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -657.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6dd3c")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=431767439]
+layout_mode = 2
+
+[node name="ScoreUI" type="Label" parent="VBox" unique_id=1499477120]
+layout_mode = 2
+text = "0123456789"
+
+[node name="LifeBox" type="HBoxContainer" parent="VBox" unique_id=2080326976]
+layout_mode = 2
+
+[node name="Life" type="TextureRect" parent="VBox/LifeBox" unique_id=271414975]
+layout_mode = 2
+texture = ExtResource("2_dhe1o")
+
+[node name="Life2" type="TextureRect" parent="VBox/LifeBox" unique_id=1687424235]
+layout_mode = 2
+texture = ExtResource("2_dhe1o")
+
+[node name="Life3" type="TextureRect" parent="VBox/LifeBox" unique_id=1036585427]
+layout_mode = 2
+texture = ExtResource("2_dhe1o")

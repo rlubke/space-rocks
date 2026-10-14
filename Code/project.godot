@@ -8,12 +8,27 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Space Rocks"
 run/main_scene="res://Main/Main.tscn"
-config/features=PackedStringArray("4.4")
+config/features=PackedStringArray("4.7")
 config/icon="res://Main/icon.png"
+
+[display]
+
+window/size/viewport_width=500
+window/size/viewport_height=800
+window/stretch/mode="viewport"
+
+[editor]
+
+naming/scene_name_casing=1
+naming/script_name_casing=1
 
 [physics]
 

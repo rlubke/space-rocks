@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://db3otv5j2cbxb"]
+
+[ext_resource type="Script" uid="uid://tj5f5k3bop43" path="res://Bullet/Bullet.gd" id="1_qratc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0hteq"]
+radius = 6.0
+height = 26.0
+
+[node name="Bullet" type="Area2D" unique_id=352860885]
+script = ExtResource("1_qratc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1052480669]
+shape = SubResource("CapsuleShape2D_0hteq")
