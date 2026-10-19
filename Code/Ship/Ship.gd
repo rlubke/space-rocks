@@ -9,7 +9,7 @@ const RRIGHT := "rotate-right"
 const PAUSE := "pause"
 const THRUST := "thrust"
 
-var thrust_factor := 10
+var thrust_factor := 5
 var velocity := Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
@@ -39,6 +39,10 @@ func _process(delta: float) -> void:
 		velocity.x += cos(rotation - PI / 2) * thrust_factor
 		velocity.y += sin(rotation - PI / 2) * thrust_factor
 
-	position += velocity
+	#TODO fix max velocity
+	# var clamp_value: float = 1000
+	# velocity = velocity.clamp(Vector2(-clamp_value, clamp_value), \
+	# 					Vector2(-clamp_value, clamp_value))
+	position += velocity * delta
 
 	super._process(delta);
