@@ -36,8 +36,8 @@ func _process(delta: float) -> void:
 		get_tree().paused = !get_tree().paused	
 	if Input.is_action_pressed(THRUST):
 		print("Whhhooooosssh")
-		velocity.x += cos(rotation - PI / 2) * delta * thrust_factor
-		velocity.y += sin(rotation - PI / 2) * delta * thrust_factor
+		velocity.x += cos(rotation - PI / 2) * thrust_factor
+		velocity.y += sin(rotation - PI / 2) * thrust_factor
 
 	position += velocity
 
