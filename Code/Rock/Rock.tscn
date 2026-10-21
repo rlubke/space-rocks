@@ -1,12 +1,30 @@
 [gd_scene format=3 uid="uid://duiesnqf505sd"]
 
 [ext_resource type="Script" uid="uid://dy3d42fk3pe12" path="res://Rock/Rock.gd" id="1_wuppp"]
+[ext_resource type="Texture2D" uid="uid://wi75dbcod6wr" path="res://Rock/assets/rock1.png" id="2_t6u7i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0hteq"]
 radius = 49.0408
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0hteq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t6u7i")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Rock" type="Area2D" unique_id=1591440479]
 script = ExtResource("1_wuppp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1296700496]
 shape = SubResource("CircleShape2D_0hteq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1938652590]
+texture_filter = 2
+position = Vector2(-8, 13.000002)
+scale = Vector2(3.8750002, 3.828125)
+sprite_frames = SubResource("SpriteFrames_0hteq")

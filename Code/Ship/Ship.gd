@@ -6,7 +6,6 @@ const TURN_SPEED := 180  # degrees / sec
 const FIRE       := "fire";
 const RLEFT      := "rotate-left"
 const RRIGHT     := "rotate-right"
-const PAUSE      := "pause"
 const THRUST     := "thrust"
 
 var thrust_factor := 5
@@ -30,9 +29,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed(RLEFT):
 		rotation_degrees -= TURN_SPEED * delta
 	if Input.is_action_pressed(RRIGHT):
-		rotation_degrees += TURN_SPEED * delta
-	if Input.is_action_pressed(PAUSE):
-		get_tree().paused = !get_tree().paused	
+		rotation_degrees += TURN_SPEED * delta	
 	if Input.is_action_pressed(THRUST):
 		velocity.x += cos(rotation - PI / 2) * thrust_factor
 		velocity.y += sin(rotation - PI / 2) * thrust_factor
