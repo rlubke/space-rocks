@@ -1,13 +1,13 @@
 extends Wrappable
 class_name Ship
 
+const BULLET     := preload("res://Bullet/Bullet.tscn")
 const TURN_SPEED := 180  # degrees / sec
-const BULLET := preload("res://Bullet/Bullet.tscn")
-const FIRE := "fire";
-const RLEFT := "rotate-left"
-const RRIGHT := "rotate-right"
-const PAUSE := "pause"
-const THRUST := "thrust"
+const FIRE       := "fire";
+const RLEFT      := "rotate-left"
+const RRIGHT     := "rotate-right"
+const PAUSE      := "pause"
+const THRUST     := "thrust"
 
 var thrust_factor := 5
 var velocity := Vector2.ZERO
@@ -17,7 +17,6 @@ func _ready() -> void:
 	super._ready()
 
 func fire() -> void:
-	print("PEW! PEW!")
 	var bullet := BULLET.instantiate()
 	bullet.position = position
 	bullet.rotation = rotation
@@ -35,7 +34,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed(PAUSE):
 		get_tree().paused = !get_tree().paused	
 	if Input.is_action_pressed(THRUST):
-		print("Whhhooooosssh")
 		velocity.x += cos(rotation - PI / 2) * thrust_factor
 		velocity.y += sin(rotation - PI / 2) * thrust_factor
 
