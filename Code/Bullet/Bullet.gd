@@ -1,8 +1,8 @@
 extends Wrappable
 class_name Bullet
 
-const SPEED    := 600.0     # pixels / sec
-var   lifespan := 2.0       # lifespan - 2 sec 
+const SPEED    := 250.0     # pixels / sec
+var   lifespan := 1.2       # lifespan - 2 sec 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
