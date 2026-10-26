@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://daxej6ao7w820"]
 
 [ext_resource type="Script" uid="uid://c41pn81buxhpv" path="res://UI/UI.gd" id="1_6dd3c"]
-[ext_resource type="Texture2D" uid="uid://cmp8dhqeo5lyx" path="res://Main/icon.png" id="2_dhe1o"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qg80j"]
 content_margin_left = 10.0
@@ -14,6 +13,9 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="FontFile" id="FontFile_dhe1o"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
 cache/0/variation_coordinates = {}
 cache/0/face_index = 0
 cache/0/embolden = 0.0
@@ -155,18 +157,5 @@ layout_mode = 2
 text = "0123456789"
 label_settings = SubResource("LabelSettings_hh5pf")
 
-[node name="LifeBox" type="HBoxContainer" parent="VBox" unique_id=2080326976]
+[node name="LivesUI" type="HBoxContainer" parent="VBox" unique_id=2080326976]
 layout_mode = 2
-
-[node name="Life" type="TextureRect" parent="VBox/LifeBox" unique_id=271414975]
-layout_mode = 2
-texture = ExtResource("2_dhe1o")
-
-[node name="Life2" type="TextureRect" parent="VBox/LifeBox" unique_id=1687424235]
-layout_mode = 2
-texture = ExtResource("2_dhe1o")
-
-[node name="Life3" type="TextureRect" parent="VBox/LifeBox" unique_id=1036585427]
-custom_minimum_size = Vector2(0.8, 0)
-layout_mode = 2
-texture = ExtResource("2_dhe1o")

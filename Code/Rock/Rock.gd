@@ -5,6 +5,8 @@ var speed     := 100
 var direction := Vector2.ZERO
 var velocity  := Vector2.ZERO
 
+var main: Main;
+
 @onready
 var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -14,12 +16,16 @@ func _ready() -> void:
 	super._ready()
 	direction = Vector2(randf_range(-1, 1), \
 						randf_range(-1, 1))
+
+	animated_sprite.frame = randi_range(0, animated_sprite.sprite_frames.get_frame_count("default"))
+
+	$AnimatedSprite2D.rotation_degrees = randi_range(0, 360)
 	
 	# animated_sprite.frame = [0...n]
 	#
 	# use this in order to have a dynamic upper bound
 	# if more frames added.
-	# animated_sprite.sprite_frames.get_frame_count("default")
+	animated_sprite.sprite_frames.get_frame_count("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,5 +37,6 @@ func _process(delta: float) -> void:
 
 func on_area_entered(collided_with: Area2D):
 	if collided_with is Bullet:
+		main.just_score(10)
 		collided_with.queue_free()
 		queue_free()

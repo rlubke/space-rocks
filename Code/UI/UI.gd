@@ -1,9 +1,43 @@
-extends Control
+extends PanelContainer
+class_name UI
 
+@onready
+var score_ui := $VBox/ScoreUI
+
+@onready
+var lives_ui := $VBox/LivesUI
+
+@onready
+var LIFE := preload("res://UI/assets/life.tscn")
+
+var score := 0
+var lives := 0
+
+func update_score(delta: int):
+	score += delta
+	score_ui.text = str(score);
+
+
+func update_lives(delta: int):
+	clear_lives()
+	build_lives(3)
+	lives += delta
+	
+	
+func clear_lives():
+	lives_ui.get_children().map(func(child) : child.queue_free())
+
+
+func build_lives(count: int):
+	for i in range(0, count):
+		var life = LIFE.instantiate()
+		lives_ui.add_child(life);
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	update_score(0)
+	update_lives(3)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
