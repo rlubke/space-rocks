@@ -8,6 +8,8 @@ const RLEFT      := "rotate-left"
 const RRIGHT     := "rotate-right"
 const THRUST     := "thrust"
 
+var player: UI
+
 var thrust_factor := 5
 var velocity := Vector2.ZERO
 
@@ -17,6 +19,7 @@ func _ready() -> void:
 
 func fire() -> void:
 	var bullet := BULLET.instantiate()
+	bullet.player = player
 	bullet.position = position
 	bullet.rotation = rotation
 	get_parent().add_child(bullet)

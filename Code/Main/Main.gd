@@ -13,7 +13,7 @@ var players: Array[UI]
 @onready
 var timer := $UfoTimer
 
-func just_score(delta):
+func just_score(delta, _player):
 	players[0].update_score(delta)
 
 func on_ufo_spawn():
@@ -26,6 +26,7 @@ func spawn_player():
 	var player =_UI.instantiate()
 	players.append(player)
 	add_child(player)
+	return player
 	
 func spawn_rocks(count: int):
 	var screenX: float = get_viewport().size.x
@@ -40,12 +41,12 @@ func spawn_rocks(count: int):
 
 		if quad == 0:
 			rock.position.x = randf_range(halfx + 64, screenX - 30)
-			rock.position.y = randf_range(halfy + 64, screenY - 30)
+			rock.position.y = randf_range(30, halfy - 64)
 		elif quad == 1:
-			rock.position.x = randf_range(halfx - 64, screenX - 30)
-			rock.position.y = randf_range(halfy + 64, screenY - 30)
+			rock.position.x = randf_range(30, halfx - 64)
+			rock.position.y = randf_range(30, halfy - 64)
 		elif quad == 2:
-			rock.position.x = randf_range(halfx - 64, screenX - 30)
+			rock.position.x = randf_range(30, halfx - 64)
 			rock.position.y = randf_range(halfy - 64, screenY + 30)
 		else:
 			rock.position.x = randf_range(halfx + 64, screenX - 30)
@@ -59,8 +60,22 @@ func spawn_rocks(count: int):
 
 func _ready() -> void:
 	timer.timeout.connect(on_ufo_spawn)	
-	spawn_player()
-	spawn_rocks(11)
+	var player  = spawn_player()
+	var ship = _SHIP.instantiate()
+	ship.player = player
+	spawn_rocks(6)
+
+	var screenX: float = get_viewport().size.x
+	var screenY: float = get_viewport().size.y
+	var halfx: float = screenX / 2
+	var halfy: float = screenY / 2
+	
+	ship.position.x = halfx
+	ship.position.y = halfy
+	
+	add_child(ship)
+	
+	
 	
 
 func _process(delta: float) -> void:

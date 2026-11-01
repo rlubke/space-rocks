@@ -19,6 +19,10 @@ run/main_scene="res://Main/Main.tscn"
 config/features=PackedStringArray("4.7")
 config/icon="res://Main/icon.png"
 
+[autoload]
+
+Signals="*uid://cvvl58rev4t6q"
+
 [display]
 
 window/size/viewport_width=500

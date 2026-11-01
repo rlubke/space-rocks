@@ -1,13 +1,9 @@
 [gd_scene format=3 uid="uid://b43n0f8g2tfgg"]
 
 [ext_resource type="Script" uid="uid://cgke8bpq05cbs" path="res://Main/Main.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dhmmlqnos0d8n" path="res://Ship/Ship.tscn" id="4_hh5pf"]
 
 [node name="Main" type="Node" unique_id=1277872833]
 script = ExtResource("1")
-
-[node name="Ship" parent="." unique_id=1992832231 instance=ExtResource("4_hh5pf")]
-position = Vector2(379, 389)
 
 [node name="UfoTimer" type="Timer" parent="." unique_id=73602492]
 wait_time = 30.0

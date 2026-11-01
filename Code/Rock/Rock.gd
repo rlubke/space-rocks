@@ -1,11 +1,15 @@
 extends Wrappable
 class_name Rock
 
-var speed     := 100
+var speed     := 20
 var direction := Vector2.ZERO
 var velocity  := Vector2.ZERO
 
+const Colors := preload("res://Colors/Colors.gd")
+
 var main: Main;
+
+var signals = preload("res://Signals/Signals.gd")
 
 @onready
 var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -27,6 +31,8 @@ func _ready() -> void:
 	# if more frames added.
 	animated_sprite.sprite_frames.get_frame_count("default")
 
+	animated_sprite.modulate = Color.html(Colors.COLORS[randi_range(0, 7)])
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -37,6 +43,9 @@ func _process(delta: float) -> void:
 
 func on_area_entered(collided_with: Area2D):
 	if collided_with is Bullet:
-		main.just_score(10)
+		if collided_with.player != null:
+			print("HERE")
+			Signals.score_event.emit(10)
+
 		collided_with.queue_free()
 		queue_free()

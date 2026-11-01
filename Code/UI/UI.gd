@@ -10,12 +10,22 @@ var lives_ui := $VBox/LivesUI
 @onready
 var LIFE := preload("res://UI/assets/life.tscn")
 
+@onready
+var SHIP := preload("res://Ship/Ship.tscn")
+
 var score := 0
 var lives := 0
 
 func update_score(delta: int):
+	print(delta)
 	score += delta
 	score_ui.text = str(score);
+	
+
+func spawn_ship():
+	var ship = SHIP.instantiate()
+	ship.player = self
+	add_child(ship)
 
 
 func update_lives(delta: int):
@@ -36,6 +46,7 @@ func build_lives(count: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Signals.score_event.connect(update_score)
 	update_score(0)
 	update_lives(3)
 
