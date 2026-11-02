@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dygxccxspasi1"]
+
+[ext_resource type="Texture2D" uid="uid://cmp8dhqeo5lyx" path="res://Main/icon.png" id="1_dy53r"]
+
+[node name="Life" type="TextureRect" unique_id=1093604079]
+texture = ExtResource("1_dy53r")
