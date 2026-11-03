@@ -1,7 +1,10 @@
 extends Node
 
 signal score_event(delta: int, ui: UI)
-signal on_destroyed(destroyed: Object)
+signal destroyed(destroyed: Object, destroyedBy: Object)
+signal new_game()
+signal new_round()
+signal life_event(detla: int, ui: UI)
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,5 +13,5 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass

@@ -22,17 +22,20 @@ config/icon="res://Main/icon.png"
 [autoload]
 
 Signals="*uid://cvvl58rev4t6q"
+GameColors="*uid://cb6txht17kmjx"
 
 [display]
 
-window/size/viewport_width=500
-window/size/viewport_height=800
+window/size/viewport_width=600
+window/size/viewport_height=900
 window/stretch/mode="viewport"
 
 [editor]
 
 naming/scene_name_casing=1
 naming/script_name_casing=1
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [input]
 

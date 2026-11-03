@@ -6,9 +6,11 @@ const PAUSE := "pause"
 const _UFO  := preload("res://UFO/UFO.tscn")
 const _ROCK := preload("res://Rock/Rock.tscn")
 const _UI   := preload("res://UI/UI.tscn")
-const _SHIP   := preload("res://Ship/Ship.tscn")
+const _SHIP := preload("res://Ship/Ship.tscn")
 
 var players: Array[UI]
+
+var starting_rock_count := 6
 
 @onready
 var timer := $UfoTimer
@@ -29,55 +31,27 @@ func spawn_player():
 	return player
 	
 func spawn_rocks(count: int):
-	var screenX: float = get_viewport().size.x
-	var screenY: float = get_viewport().size.y
-	var halfx: float = screenX / 2
-	var halfy: float = screenY / 2
+	var screenX = get_viewport().size.x
+	var screenY = get_viewport().size.y
 
-	var quad = 0
 	for i in count:
-		var rock = _ROCK.instantiate()
-		rock.main = self
-
-		if quad == 0:
-			rock.position.x = randf_range(halfx + 64, screenX - 30)
-			rock.position.y = randf_range(30, halfy - 64)
-		elif quad == 1:
-			rock.position.x = randf_range(30, halfx - 64)
-			rock.position.y = randf_range(30, halfy - 64)
-		elif quad == 2:
-			rock.position.x = randf_range(30, halfx - 64)
-			rock.position.y = randf_range(halfy - 64, screenY + 30)
-		else:
-			rock.position.x = randf_range(halfx + 64, screenX - 30)
-			rock.position.y = randf_range(halfy - 64, screenY + 30)
-
-		quad += 1;
-		if (quad > 3):
-			quad = 0
-
-		add_child(rock)
+		add_child(Rock.newInstance(screenX, screenY))
 
 func _ready() -> void:
-	timer.timeout.connect(on_ufo_spawn)	
-	var player  = spawn_player()
-	var ship = _SHIP.instantiate()
-	ship.player = player
-	spawn_rocks(6)
-
+	timer.timeout.connect(on_ufo_spawn)
+	Signals.new_game.connect(on_new_game)
+	
+func on_new_game() -> void:
 	var screenX: float = get_viewport().size.x
 	var screenY: float = get_viewport().size.y
-	var halfx: float = screenX / 2
-	var halfy: float = screenY / 2
 	
-	ship.position.x = halfx
-	ship.position.y = halfy
-	
+	var player: UI = spawn_player()
+	var ship      := Ship.newInstance(screenX, screenY, player)
 	add_child(ship)
-	
-	
-	
+	spawn_rocks(6)
 
-func _process(delta: float) -> void:
-	if Input.is_action_pressed(PAUSE):
-		get_tree().quit()
+func _process(_delta: float) -> void:
+	pass
+		
+func start_new_round():
+	pass
