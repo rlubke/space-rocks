@@ -42,6 +42,7 @@ static func newInstance(screenX: float, \
 		
 	return rock
 
+
 static func newInstancePos(pos: Vector2, rockType: RockType):
 	var rock := _ROCK.instantiate()
 
@@ -87,7 +88,7 @@ func _process(delta: float) -> void:
 	position += velocity
 
 	super._process(delta);
-		
+
 
 func on_destroyed(destroyed: Object, destroyedBy: Object):
 	if destroyed == self:
@@ -113,5 +114,3 @@ func on_destroyed(destroyed: Object, destroyedBy: Object):
 				Signals.score_event.emit(30)
 
 	destroyed.queue_free.call_deferred()
-			
-	

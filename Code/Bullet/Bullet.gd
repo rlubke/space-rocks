@@ -10,13 +10,15 @@ func _ready() -> void:
 	super._ready()
 	if !area_entered.is_connected(on_area_entered):
 		area_entered.connect(on_area_entered)
-	
+
+
 func on_area_entered(collided_with: Area2D):
 	if "player" in collided_with:
 		return
 		
 	Signals.destroyed.emit(collided_with, self)
 	queue_free()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -20,7 +20,7 @@ func update_score(delta: int):
 	print(delta)
 	score += delta
 	score_ui.text = str(score);
-	
+
 
 func spawn_ship():
 	var ship = SHIP.instantiate()
@@ -42,7 +42,7 @@ func build_lives(count: int):
 	for i in range(0, count):
 		var life = LIFE.instantiate()
 		lives_ui.add_child(life);
-	
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,12 +52,11 @@ func _ready() -> void:
 		Signals.destroyed.connect(on_destroyed)
 	update_score(0)
 	update_lives(3)
-	
+
 
 func on_destroyed(destroyed: Object, destroyedBy: Object) -> void:
 	if destroyed is Ship:
 		update_lives(lives_ui.get_child_count() - 1)
-	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

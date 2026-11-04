@@ -25,7 +25,8 @@ func _ready() -> void:
 
 	animated_sprite.modulate = Color.html(GameColors.PLAYER1)
 	super._ready()
-	
+
+
 static func newInstance(screenX: float, screenY: float, ui: UI) -> Ship:
 	var ship = _SHIP.instantiate()
 
@@ -35,16 +36,17 @@ static func newInstance(screenX: float, screenY: float, ui: UI) -> Ship:
 	ship.player = ui
 
 	return ship
-	
+
+
 func on_area_entered(collided_with: Area2D):
 	if collided_with is Rock:
 		Signals.destroyed.emit(self, collided_with)
 		queue_free()
 
-		
+
 func on_destroyed(destroyed: Object, destroyedBy: Object):
 	pass
-		
+
 
 func fire() -> void:
 	var bullet := BULLET.instantiate()

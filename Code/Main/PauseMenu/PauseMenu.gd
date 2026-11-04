@@ -21,6 +21,7 @@ func _ready() -> void:
 	main = get_parent();
 	show()
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	# hook pause up here
@@ -29,9 +30,11 @@ func _process(_delta: float) -> void:
 		tree.paused = true
 		show();
 
+
 func on_continue_pressed() -> void:
 	get_tree().paused = false;
 	hide()
+
 
 func on_play_pressed() -> void:
 	get_tree().paused = false;
