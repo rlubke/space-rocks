@@ -44,7 +44,7 @@ func on_area_entered(collided_with: Area2D):
 		queue_free()
 
 
-func on_destroyed(destroyed: Object, destroyedBy: Object):
+func on_destroyed(_destroyed: Object, _destroyedBy: Object):
 	pass
 
 

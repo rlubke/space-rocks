@@ -32,7 +32,7 @@ script = ExtResource("1_wuppp")
 shape = SubResource("CircleShape2D_0hteq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1938652590]
-modulate = Color(0.8392157, 0.8392157, 0.8392157, 1)
+modulate = Color(1.4286379, 1.4167901, 1.413868, 1)
 texture_filter = 2
 position = Vector2(-7.6293945e-06, -4.000004)
 scale = Vector2(1.7968751, 1.7265625)

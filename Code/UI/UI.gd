@@ -48,13 +48,13 @@ func build_lives(count: int):
 func _ready() -> void:
 	if !Signals.score_event.is_connected(update_score):
 		Signals.score_event.connect(update_score)
-	if !Signals.destroyed.connect(on_destroyed):
+	if !Signals.destroyed.is_connected(on_destroyed):
 		Signals.destroyed.connect(on_destroyed)
 	update_score(0)
 	update_lives(3)
 
 
-func on_destroyed(destroyed: Object, destroyedBy: Object) -> void:
+func on_destroyed(destroyed: Object, _destroyedBy: Object) -> void:
 	if destroyed is Ship:
 		update_lives(lives_ui.get_child_count() - 1)
 
