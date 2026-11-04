@@ -2,13 +2,6 @@
 
 [ext_resource type="Script" uid="uid://cgke8bpq05cbs" path="res://Main/Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dhgysl2eds6sy" path="res://Main/PauseMenu/PauseMenu.tscn" id="2_83ytx"]
-[ext_resource type="PackedScene" uid="uid://888m1u1b3flb" path="res://Neon.tscn" id="3_amygn"]
-
-[sub_resource type="Environment" id="Environment_ps1la"]
-background_mode = 3
-glow_enabled = true
-glow_intensity = 7.03
-glow_hdr_threshold = 0.27
 
 [node name="Main" type="Node" unique_id=1277872833]
 script = ExtResource("1")
@@ -19,6 +12,3 @@ autostart = true
 
 [node name="PauseMenu" parent="." unique_id=504016301 instance=ExtResource("2_83ytx")]
 top_level = true
-
-[node name="Neon" parent="." unique_id=1398955748 instance=ExtResource("3_amygn")]
-environment = SubResource("Environment_ps1la")

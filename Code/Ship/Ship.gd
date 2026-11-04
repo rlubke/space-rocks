@@ -20,6 +20,9 @@ var velocity := Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if !area_entered.is_connected(on_area_entered):
+		area_entered.connect(on_area_entered)
+
 	animated_sprite.modulate = Color.html(GameColors.PLAYER1)
 	super._ready()
 	
@@ -32,6 +35,11 @@ static func newInstance(screenX: float, screenY: float, ui: UI) -> Ship:
 	ship.player = ui
 
 	return ship
+	
+func on_area_entered(collided_with: Area2D):
+	if collided_with is Rock:
+		Signals.destroyed.emit(self, collided_with)
+		queue_free()
 
 		
 func on_destroyed(destroyed: Object, destroyedBy: Object):

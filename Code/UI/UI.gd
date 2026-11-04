@@ -30,7 +30,7 @@ func spawn_ship():
 
 func update_lives(delta: int):
 	clear_lives()
-	build_lives(3)
+	build_lives(delta)
 	lives += delta
 	
 	
@@ -46,9 +46,18 @@ func build_lives(count: int):
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Signals.score_event.connect(update_score)
+	if !Signals.score_event.is_connected(update_score):
+		Signals.score_event.connect(update_score)
+	if !Signals.destroyed.connect(on_destroyed):
+		Signals.destroyed.connect(on_destroyed)
 	update_score(0)
 	update_lives(3)
+	
+
+func on_destroyed(destroyed: Object, destroyedBy: Object) -> void:
+	if destroyed is Ship:
+		update_lives(lives_ui.get_child_count() - 1)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
