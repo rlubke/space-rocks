@@ -63,9 +63,6 @@ func _ready() -> void:
 	if !Signals.destroyed.is_connected(on_destroyed):
 		Signals.destroyed.connect(on_destroyed)
 
-	if !area_entered.is_connected(on_area_entered):
-		area_entered.connect(on_area_entered)
-
 	super._ready()
 
 	direction = Vector2(randf_range(-1, 1), \
@@ -90,12 +87,6 @@ func _process(delta: float) -> void:
 	position += velocity
 
 	super._process(delta);
-
-func on_area_entered(collided_with: Area2D):
-	if collided_with is Bullet:
-		Signals.destroyed.emit(self, collided_with)
-
-		collided_with.queue_free()
 		
 
 func on_destroyed(destroyed: Object, destroyedBy: Object):
