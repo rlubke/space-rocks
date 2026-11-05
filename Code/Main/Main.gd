@@ -10,6 +10,12 @@ const _SHIP := preload("res://Ship/Ship.tscn")
 
 var players: Array[UI]
 
+@onready 
+var game_over: PanelContainer = $GameOver
+
+@onready 
+var pause_menu: PanelContainer = $PauseMenu
+
 var starting_rock_count := 6
 
 @onready
@@ -44,6 +50,8 @@ func spawn_rocks(count: int):
 func _ready() -> void:
 	timer.timeout.connect(on_ufo_spawn)
 	Signals.new_game.connect(on_new_game)
+	Signals.new_ship.connect(spawn_ship)
+	Signals.game_over.connect(on_game_over)
 
 
 func on_new_game() -> void:
@@ -54,6 +62,24 @@ func on_new_game() -> void:
 	var ship      := Ship.newInstance(screenX, screenY, player)
 	add_child(ship)
 	spawn_rocks(6)
+	
+	
+func on_game_over() -> void:
+	game_over.show()
+	await get_tree().create_timer(2).timeout
+	game_over.hide();
+	get_node("PauseMenu/VBox/PlayButton").show()
+	get_node("PauseMenu/VBox/ContinueButton").hide()
+	pause_menu.show()
+	
+	
+func spawn_ship() -> void:
+	var screenX: float = get_viewport().size.x
+	var screenY: float = get_viewport().size.y
+	
+	# TODO FIX the hard array ref
+	var ship := Ship.newInstance(screenX, screenY, players[0])
+	add_child.call_deferred(ship)
 
 
 func _process(_delta: float) -> void:

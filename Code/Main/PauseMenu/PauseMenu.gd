@@ -40,6 +40,7 @@ func on_play_pressed() -> void:
 	get_tree().paused = false;
 	play_button.visible = false
 	hide()
+	cont_button.visible = true
 	Signals.new_game.emit()
 
 

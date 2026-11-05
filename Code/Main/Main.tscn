@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cgke8bpq05cbs" path="res://Main/Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://dhgysl2eds6sy" path="res://Main/PauseMenu/PauseMenu.tscn" id="2_83ytx"]
+[ext_resource type="PackedScene" uid="uid://wiibx6ripxyr" path="res://Main/PauseMenu/GameOver.tscn" id="3_amygn"]
 
 [node name="Main" type="Node" unique_id=1277872833]
 script = ExtResource("1")
@@ -12,3 +13,7 @@ autostart = true
 
 [node name="PauseMenu" parent="." unique_id=504016301 instance=ExtResource("2_83ytx")]
 top_level = true
+
+[node name="GameOver" parent="." unique_id=638026042 instance=ExtResource("3_amygn")]
+visible = false
+z_index = 29

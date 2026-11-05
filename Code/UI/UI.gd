@@ -17,7 +17,6 @@ var score := 0
 var lives := 0
 
 func update_score(delta: int):
-	print(delta)
 	score += delta
 	score_ui.text = str(score);
 
@@ -51,12 +50,16 @@ func _ready() -> void:
 	if !Signals.destroyed.is_connected(on_destroyed):
 		Signals.destroyed.connect(on_destroyed)
 	update_score(0)
-	update_lives(3)
+	update_lives(2)
 
 
 func on_destroyed(destroyed: Object, _destroyedBy: Object) -> void:
 	if destroyed is Ship:
 		update_lives(lives_ui.get_child_count() - 1)
+		if (lives_ui.get_child_count() > 0):
+			Signals.new_ship.emit();
+		else:
+			Signals.game_over.emit();
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

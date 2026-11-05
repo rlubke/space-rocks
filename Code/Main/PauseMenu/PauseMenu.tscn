@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dhgysl2eds6sy"]
 
-[ext_resource type="Script" uid="uid://dd0cix7datup6" path="res://Main/PauseMenu/PauseMenu.gd" id="1_86arr"]
-[ext_resource type="FontFile" uid="uid://2nwdlxboj0i2" path="res://Main/assets/Hyperspace Bold.otf" id="2_mhmsu"]
+[ext_resource type="Script" uid="uid://dd0cix7datup6" path="res://Main/PauseMenu/PauseMenu.gd" id="1_yo27g"]
+[ext_resource type="FontFile" uid="uid://2nwdlxboj0i2" path="res://Main/assets/Hyperspace Bold.otf" id="2_pwkx1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amygn"]
 content_margin_left = 10.0
@@ -35,28 +35,29 @@ offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_amygn")
-script = ExtResource("1_86arr")
+script = ExtResource("1_yo27g")
 
 [node name="VBox" type="VBoxContainer" parent="." unique_id=1971348621]
 layout_mode = 2
 
 [node name="PlayButton" type="Button" parent="VBox" unique_id=978451917]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_mhmsu")
+theme_override_fonts/font = ExtResource("2_pwkx1")
 theme_override_font_sizes/font_size = 22
 text = "Play"
 flat = true
 
 [node name="ContinueButton" type="Button" parent="VBox" unique_id=782315305]
+visible = false
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_mhmsu")
+theme_override_fonts/font = ExtResource("2_pwkx1")
 theme_override_font_sizes/font_size = 22
 text = "Continue"
 flat = true
 
 [node name="QuitButton" type="Button" parent="VBox" unique_id=292071565]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_mhmsu")
+theme_override_fonts/font = ExtResource("2_pwkx1")
 theme_override_font_sizes/font_size = 22
 text = "Quit"
 flat = true

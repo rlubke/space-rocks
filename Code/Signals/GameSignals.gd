@@ -5,6 +5,8 @@ signal destroyed(destroyed: Object, destroyedBy: Object)
 signal new_game()
 signal new_round()
 signal life_event(detla: int, ui: UI)
+signal game_over()
+signal new_ship()
 
 
 # Called when the node enters the scene tree for the first time.

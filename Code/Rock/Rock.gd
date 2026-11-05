@@ -91,7 +91,7 @@ func _process(delta: float) -> void:
 
 
 func on_destroyed(destroyed: Object, destroyedBy: Object):
-	if destroyed == self:
+	if destroyed == self && destroyedBy is Bullet:
 		var rock := destroyed as Rock
 		var bullet := destroyedBy as Bullet
 
@@ -112,5 +112,21 @@ func on_destroyed(destroyed: Object, destroyedBy: Object):
 		else:
 			if bullet.player != null:
 				Signals.score_event.emit(30)
+				
+	if destroyedBy == self && destroyed is Ship:
+		var rock := destroyedBy as Rock
+		var ship := destroyed as Ship
+		
+		destroyedBy.queue_free.call_deferred();
+		
+		if rock.type == RockType.LARGE:
+			for i in range(0, randi_range(2, 3)):
+				get_parent().add_child.call_deferred(Rock.newInstancePos( \
+						rock.position, RockType.MEDIUM))
+
+		elif rock.type == RockType.MEDIUM:
+			for i in range(0, randi_range(2, 3)):
+				get_parent().add_child.call_deferred(Rock.newInstancePos( \
+						rock.position, RockType.SMALL))
 
 	destroyed.queue_free.call_deferred()
