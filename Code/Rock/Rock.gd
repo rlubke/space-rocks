@@ -112,13 +112,12 @@ func on_destroyed(destroyed: Object, destroyedBy: Object):
 		else:
 			if bullet.player != null:
 				Signals.score_event.emit(30)
-				
+
+		rock.queue_free.call_deferred()
+
 	if destroyedBy == self && destroyed is Ship:
 		var rock := destroyedBy as Rock
-		var ship := destroyed as Ship
-		
-		destroyedBy.queue_free.call_deferred();
-		
+
 		if rock.type == RockType.LARGE:
 			for i in range(0, randi_range(2, 3)):
 				get_parent().add_child.call_deferred(Rock.newInstancePos( \
@@ -129,4 +128,16 @@ func on_destroyed(destroyed: Object, destroyedBy: Object):
 				get_parent().add_child.call_deferred(Rock.newInstancePos( \
 						rock.position, RockType.SMALL))
 
-	destroyed.queue_free.call_deferred()
+		rock.queue_free.call_deferred()
+		
+func _enter_tree() -> void:
+	add_to_group("rocks")
+	
+func _exit_tree() -> void:
+	remove_from_group("rocks")
+	var rocks = get_tree().get_nodes_in_group("rocks")
+	print("Rocks -> ", rocks)
+	if rocks.is_empty():
+		print("No more rocks, emitting new round event")
+		Signals.new_round.emit();
+	
