@@ -16,7 +16,7 @@ var game_over: PanelContainer = $GameOver
 @onready 
 var pause_menu: PanelContainer = $PauseMenu
 
-var starting_rock_count := 1
+var starting_rock_count := 6
 
 @onready
 var timer := $UfoTimer
@@ -59,6 +59,8 @@ func on_new_game() -> void:
 	var screenX: float = get_viewport().size.x
 	var screenY: float = get_viewport().size.y
 	
+	
+	
 	var player: UI = spawn_player()
 	var ship      := Ship.newInstance(screenX, screenY, player)
 	add_child(ship)
@@ -66,6 +68,7 @@ func on_new_game() -> void:
 	
 	
 func on_new_round():
+	await get_tree().create_timer(2).timeout
 	print("Starting new round");
 	spawn_rocks(6)
 	

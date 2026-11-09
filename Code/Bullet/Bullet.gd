@@ -3,7 +3,7 @@ class_name Bullet
 
 const SPEED    := 250.0     # pixels / sec
 var   lifespan := 1.2       # lifespan - 2 sec
-var   player
+var   player: UI
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,8 +13,9 @@ func _ready() -> void:
 
 
 func on_area_entered(collided_with: Area2D):
-	if "player" in collided_with:
-		return
+	if collided_with is Ship or collided_with is UFO or \
+	   collided_with is Bullet:
+		return;
 		
 	Signals.destroyed.emit(collided_with, self)
 	queue_free()

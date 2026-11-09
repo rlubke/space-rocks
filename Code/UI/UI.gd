@@ -14,11 +14,13 @@ var LIFE := preload("res://UI/assets/life.tscn")
 var SHIP := preload("res://Ship/Ship.tscn")
 
 var score := 0
-var lives := 0
 
 func update_score(delta: int):
 	score += delta
-	score_ui.text = str(score);
+	score_ui.text = str(score)
+	if score % 500 == 0:
+		print("EMIT ONEUP")
+		Signals.one_up.emit()
 
 
 func spawn_ship():
@@ -27,10 +29,9 @@ func spawn_ship():
 	add_child(ship)
 
 
-func update_lives(delta: int):
+func update_lives(new_val: int):
 	clear_lives()
-	build_lives(delta)
-	lives += delta
+	build_lives(new_val)
 	
 	
 func clear_lives():
@@ -49,8 +50,15 @@ func _ready() -> void:
 		Signals.score_event.connect(update_score)
 	if !Signals.destroyed.is_connected(on_destroyed):
 		Signals.destroyed.connect(on_destroyed)
+	if !Signals.one_up.is_connected(on_one_up):
+		Signals.one_up.connect(on_one_up)
 	update_score(0)
 	update_lives(2)
+
+
+func on_one_up():
+	# TODO: FIX ME - this isn't working right now
+	update_lives(lives_ui.get_child_count() + 1)
 
 
 func on_destroyed(destroyed: Object, _destroyedBy: Object) -> void:

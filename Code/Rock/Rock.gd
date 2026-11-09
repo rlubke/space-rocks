@@ -63,6 +63,8 @@ static func newInstancePos(pos: Vector2, rockType: RockType):
 func _ready() -> void:
 	if !Signals.destroyed.is_connected(on_destroyed):
 		Signals.destroyed.connect(on_destroyed)
+	if !Signals.new_game.is_connected(on_new_game):
+		Signals.new_game.connect(on_new_game)
 
 	super._ready()
 
@@ -88,6 +90,10 @@ func _process(delta: float) -> void:
 	position += velocity
 
 	super._process(delta);
+	
+
+func on_new_game():
+	get_tree().call_group("rocks", "queue_free")
 
 
 func on_destroyed(destroyed: Object, destroyedBy: Object):
@@ -95,6 +101,7 @@ func on_destroyed(destroyed: Object, destroyedBy: Object):
 		var rock := destroyed as Rock
 		var bullet := destroyedBy as Bullet
 
+		## LARGE rock
 		if rock.type == RockType.LARGE:
 			if bullet.player != null:
 				Signals.score_event.emit(10)
@@ -102,6 +109,7 @@ func on_destroyed(destroyed: Object, destroyedBy: Object):
 				get_parent().add_child.call_deferred(Rock.newInstancePos( \
 						rock.position, RockType.MEDIUM))
 
+		## MEDIUM rock
 		elif rock.type == RockType.MEDIUM:
 			if bullet.player != null:
 				Signals.score_event.emit(20)
@@ -109,13 +117,14 @@ func on_destroyed(destroyed: Object, destroyedBy: Object):
 				get_parent().add_child.call_deferred(Rock.newInstancePos( \
 						rock.position, RockType.SMALL))
 
+		## SMALL rock
 		else:
 			if bullet.player != null:
 				Signals.score_event.emit(30)
 
 		rock.queue_free.call_deferred()
 
-	if destroyedBy == self && destroyed is Ship:
+	if destroyedBy == self && (destroyed is Ship or destroyed is UFO):
 		var rock := destroyedBy as Rock
 
 		if rock.type == RockType.LARGE:
@@ -136,7 +145,7 @@ func _enter_tree() -> void:
 func _exit_tree() -> void:
 	remove_from_group("rocks")
 	var rocks = get_tree().get_nodes_in_group("rocks")
-	print("Rocks -> ", rocks)
+
 	if rocks.is_empty():
 		print("No more rocks, emitting new round event")
 		Signals.new_round.emit();

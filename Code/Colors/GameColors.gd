@@ -11,6 +11,8 @@ const UV        := "#9d4dff"
 
 const PLAYER1 := "#0065F8"
 
+const UFO := "#6CC417";
+
 const COLORS := [
 	PINK, RED, TANGERINE, YELLOW, LIME, GREEN, CYAN, UV
 ]
